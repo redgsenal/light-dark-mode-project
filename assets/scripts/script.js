@@ -12,19 +12,16 @@ const toggleTheme = (isDarkMode) => {
     var themeColor = isDarkMode ? 'dark' : 'light';
     nav.classList.remove('dark-mode');
     textBox.classList.remove('dark-mode');
+    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+    toggleIcon.children[0].textContent = isDarkMode ? "Dark Mode" : "Light Mode";
+    changeImage(themeColor);
     if (isDarkMode) {
         // change to dark theme
-        document.documentElement.setAttribute('data-theme', 'dark');
         nav.classList.add('dark-mode');
         textBox.classList.add('dark-mode');
-        toggleIcon.children[0].textContent = "Dark Mode";
         toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
-        changeImage('dark');
     } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        toggleIcon.children[0].textContent = "Light Mode";
         toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
-        changeImage('light');
     }
     localStorage.setItem('theme', themeColor);
 }
