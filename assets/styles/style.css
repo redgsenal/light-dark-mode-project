@@ -11,16 +11,24 @@
   --box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.5);
   --h1-colors: rgb(48, 40, 59);
   --h2-colors: rgb(44, 133, 81);
+  --textbox-color: rgb(64, 66, 68);
+  --textbox-bg: rgb(206, 206, 206);
+  --nav-link-color: rgb(151, 59, 121);
 }
 
 [data-theme="dark"] {
   --primary-color: rgb(150, 65, 255);
   --primary-variant: #6c63ff;
   --secondary-color: #03dac5;
-  --on-primary: #000;
+  --on-primary: #2c96a8;
   --on-background: rgba(255, 255, 255, 0.9);
   --on-background-alt: rgba(255, 255, 255, 0.7);
   --background: #121212;
+  --h1-colors: rgb(202, 216, 78);
+  --h2-colors: rgb(230, 226, 30);
+  --textbox-color: wheat;
+  --textbox-bg: rgb(15, 47, 48);
+  --nav-link-color: wheat
 }
 
 html {
@@ -60,6 +68,7 @@ h2 {
 
 /* Navigation */
 nav {
+  color: #ccc;
   font-family: "Nunito", sans-serif;
   z-index: 10;
   position: fixed;
@@ -68,6 +77,14 @@ nav {
   padding: 25px;
   width: 100vw;
   background: rgb(255 255 255 / 50%);
+}
+
+nav a {
+  color: var(--nav-link-color);
+}
+
+nav.dark-mode {
+  background-color: rgba(68, 156, 142 / 70%);
 }
 
 a {
@@ -168,10 +185,14 @@ button:hover:not(.outline) {
 .text-box {
   width: 40%;
   text-align: justify;
-  background: rgb(0 0 0 / 50%);
-  color: var(--on-primary);
+  background: var(--textbox-bg);
+  color: var(--textbox-color);
   border-radius: 10px;
   padding: 30px;
+}
+
+.text-box.dark-mode {
+  background-color: rgb(255 255 255 / 50%);
 }
 
 p {
@@ -200,7 +221,7 @@ p {
   z-index: 100;
   position: fixed;
   right: 25px;
-  top: 30px;
+  top: 25px;
 }
 
 .theme-switch-wrapper span {
@@ -210,7 +231,7 @@ p {
 
 .toggle-text {
   position: relative;
-  top: -4px;
+  top: -5px;
   right: 5px;
   color: var(--on-background);
 }
