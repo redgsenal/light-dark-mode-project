@@ -6,19 +6,23 @@ const image2 = document.getElementById('image2');
 const image3 = document.getElementById('image3');
 const textBox = document.getElementById('text-box');
 const currentTheme = localStorage.getItem('theme');
+const DARK_THEME = 'dark';
+const LIGHT_THEME = 'light';
+const DARK_MODE = 'dark-mode';
+
 console.log({ currentTheme });
 
 const toggleTheme = (isDarkMode) => {
-    var themeColor = isDarkMode ? 'dark' : 'light';
-    nav.classList.remove('dark-mode');
-    textBox.classList.remove('dark-mode');
-    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+    var themeColor = isDarkMode ? DARK_THEME : LIGHT_THEME;
+    nav.classList.remove(DARK_MODE);
+    textBox.classList.remove(DARK_MODE);
+    document.documentElement.setAttribute('data-theme', themeColor);
     toggleIcon.children[0].textContent = isDarkMode ? "Dark Mode" : "Light Mode";
     changeImage(themeColor);
     if (isDarkMode) {
         // change to dark theme
-        nav.classList.add('dark-mode');
-        textBox.classList.add('dark-mode');
+        nav.classList.add(DARK_MODE);
+        textBox.classList.add(DARK_MODE);
         toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
     } else {
         toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
@@ -35,15 +39,14 @@ const changeImage = (imagecolor) => {
 // switch theme here
 const switchTheme = (event) => {
     console.log('change theme here: ', event.target.checked);
-    var isDarkMode = event.target.checked;
-    toggleTheme(isDarkMode);
+    toggleTheme(event.target.checked);
 }
 
 const loadThemeColor = () => {
     if (!currentTheme) {
-        currentTheme = 'light';
+        currentTheme = LIGHT_THEME;
     }
-    var isDarkMode = currentTheme == 'dark';
+    var isDarkMode = currentTheme == DARK_THEME;
     toggleSwitch.checked = isDarkMode;
     toggleTheme(isDarkMode);
 }
